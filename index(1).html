@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Multimedia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Página Principal -->
+    <div id="mainPage" class="page-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <i class="fas fa-play-circle"></i>
+                        Multimedia Hub
+                    </h1>
+                    <nav class="nav">
+                        <a href="#galeria" class="nav-link">Galería</a>
+                        <a href="#podcasts" class="nav-link">Podcasts</a>
+                        <a href="#posts" class="nav-link">Posts</a>
+                        <button id="adminBtn" class="btn btn--secondary btn--sm">
+                            <i class="fas fa-cog"></i> Administrar
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Bienvenido a tu plataforma multimedia</h2>
+                    <p>Descubre contenido inspirador, podcasts únicos y experiencias visuales extraordinarias</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Posts Section -->
+        <section id="posts" class="section">
+            <div class="container">
+                <h2 class="section-title">Posts Recientes</h2>
+                <div id="postsGrid" class="posts-grid">
+                    <!-- Posts will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería Section -->
+        <section id="galeria" class="section">
+            <div class="container">
+                <h2 class="section-title">Galería Inspiradora</h2>
+                <div id="imageGallery" class="image-gallery">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Podcasts Section -->
+        <section id="podcasts" class="section">
+            <div class="container">
+                <h2 class="section-title">Podcasts Recientes</h2>
+                <div id="podcastList" class="podcast-list">
+                    <!-- Podcasts will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 Multimedia Hub. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Panel de Administrador -->
+    <div id="adminPage" class="page-container hidden">
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <h3>Acceso de Administrador</h3>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Usuario:</label>
+                        <input type="text" id="username" class="form-control" value="admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Contraseña:</label>
+                        <input type="password" id="password" class="form-control" value="admin123" required>
+                    </div>
+                    <div class="flex gap-8">
+                        <button type="submit" class="btn btn--primary">Ingresar</button>
+                        <button type="button" id="cancelLogin" class="btn btn--secondary">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <h1><i class="fas fa-tachometer-alt"></i> Panel de Administración</h1>
+                <div class="admin-actions">
+                    <button id="backToMain" class="btn btn--secondary btn--sm">
+                        <i class="fas fa-home"></i> Volver al Sitio
+                    </button>
+                    <button id="logoutBtn" class="btn btn--outline btn--sm">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-layout">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <nav class="admin-nav">
+                    <button class="admin-nav-item active" data-section="dashboard">
+                        <i class="fas fa-chart-line"></i> Dashboard
+                    </button>
+                    <button class="admin-nav-item" data-section="posts">
+                        <i class="fas fa-file-alt"></i> Gestión de Posts
+                    </button>
+                    <button class="admin-nav-item" data-section="images">
+                        <i class="fas fa-images"></i> Gestión de Imágenes
+                    </button>
+                    <button class="admin-nav-item" data-section="podcasts">
+                        <i class="fas fa-podcast"></i> Gestión de Podcasts
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="admin-section active">
+                    <h2>Dashboard</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-file-alt"></i>
+                            <div>
+                                <h3 id="totalPosts">0</h3>
+                                <p>Posts Publicados</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-images"></i>
+                            <div>
+                                <h3 id="totalImages">0</h3>
+                                <p>Imágenes</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-podcast"></i>
+                            <div>
+                                <h3 id="totalPodcasts">0</h3>
+                                <p>Podcasts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posts Management -->
+                <div id="posts" class="admin-section">
+                    <div class="section-header">
+                        <h2>Gestión de Posts</h2>
+                        <button id="addPostBtn" class="btn btn--primary">
+                            <i class="fas fa-plus"></i> Nuevo Post
+                        </button>
+                    </div>
+                    
+                    <div id="postForm" class="form-container hidden">
+                        <h3>Crear Nuevo Post</h3>
+                        <form id="newPostForm">
+                            <div class="form-group">
+                                <label class="form-label">Título:</label>
+                                <input type="text" id="postTitle" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Contenido:</label>
+                                <textarea id="postContent" class="form-control" rows="6" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Fecha:</label>
+                                <input type="date" id="postDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">URL de Imagen Destacada:</label>
+                                <input type="url" id="postImage" class="form-control" placeholder="https://...">
+                            </div>
+                            <div class="flex gap-8">
+                                <button type="submit" class="btn btn--primary">Guardar Post</button>
+                                <button type="button" id="cancelPost" class="btn btn--secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="postsList" class="content-list">
+                        <!-- Posts list will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Images Management -->
+                <div id="images" class="admin-section">
+                    <div class="section-header">
+                        <h2>Gestión de Imágenes</h2>
+                        <button id="addImageBtn" class="btn btn--primary">
+                            <i class="fas fa-plus"></i> Nueva Imagen
+                        </button>
+                    </div>
+
+                    <div id="imageForm" class="form-container hidden">
+                        <h3>Añadir Nueva Imagen</h3>
+                        <form id="newImageForm">
+                            <div class="form-group">
+                                <label class="form-label">Título:</label>
+                                <input type="text" id="imageTitle" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">URL de Imagen:</label>
+                                <input type="url" id="imageUrl" class="form-control" placeholder="https://..." required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Descripción:</label>
+                                <textarea id="imageDescription" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Tags (separados por comas):</label>
+                                <input type="text" id="imageTags" class="form-control" placeholder="inspiración, creatividad">
+                            </div>
+                            <div class="flex gap-8">
+                                <button type="submit" class="btn btn--primary">Guardar Imagen</button>
+                                <button type="button" id="cancelImage" class="btn btn--secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="imagesList" class="content-list">
+                        <!-- Images list will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Podcasts Management -->
+                <div id="podcasts" class="admin-section">
+                    <div class="section-header">
+                        <h2>Gestión de Podcasts</h2>
+                        <button id="addPodcastBtn" class="btn btn--primary">
+                            <i class="fas fa-plus"></i> Nuevo Podcast
+                        </button>
+                    </div>
+
+                    <div id="podcastForm" class="form-container hidden">
+                        <h3>Crear Nuevo Podcast</h3>
+                        <form id="newPodcastForm">
+                            <div class="form-group">
+                                <label class="form-label">Título:</label>
+                                <input type="text" id="podcastTitle" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Descripción:</label>
+                                <textarea id="podcastDescription" class="form-control" rows="4" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Fecha de Publicación:</label>
+                                <input type="date" id="podcastDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Duración (mm:ss):</label>
+                                <input type="text" id="podcastDuration" class="form-control" placeholder="25:30" pattern="[0-9]{1,2}:[0-9]{2}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">URL de Audio:</label>
+                                <input type="url" id="podcastAudio" class="form-control" placeholder="https://...">
+                            </div>
+                            <div class="flex gap-8">
+                                <button type="submit" class="btn btn--primary">Guardar Podcast</button>
+                                <button type="button" id="cancelPodcast" class="btn btn--secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="podcastsList" class="content-list">
+                        <!-- Podcasts list will be loaded here -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content modal-image">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-info">
+                <h3 id="modalImageTitle"></h3>
+                <p id="modalImageDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification hidden">
+        <span id="notificationText"></span>
+        <button id="closeNotification" class="notification-close">&times;</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
