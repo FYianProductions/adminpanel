@@ -15,8 +15,7 @@ const backToPostsButton = document.getElementById('back-to-posts');
 const subscribeForm = document.getElementById('subscribe-form');
 const subscribeStatus = document.getElementById('subscribe-status');
 const currentYearSpan = document.getElementById('current-year');
-const searchInput = document.getElementById('search-input');
-const searchIcon = document.getElementById('search-icon');
+// Elementos de búsqueda eliminados
 const noResultsMessage = document.getElementById('no-results-message');
 const imageGalleryGrid = document.getElementById('image-gallery-grid');
 const noImageResultsMessage = document.getElementById('no-image-results-message');
@@ -624,53 +623,18 @@ function volverAPublicaciones() {
      }, 1500);
  }
 
+// Función de búsqueda eliminada
 function handleSearch() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
+    // Mostrar todos los posts sin filtrar
     const publicacionesSection = document.getElementById('publicaciones');
     const imagenesSection = document.getElementById('imagenes');
-
-    if (searchTerm !== '') {
-        unlockAchievement('search');
-    }
-
+    
     if (publicacionesSection.classList.contains('active')) {
-        if (searchTerm === '') {
-            currentPosts = [...publicaciones];
-        } else {
-            currentPosts = publicaciones.filter(post => {
-                const tituloLower = post.titulo.toLowerCase();
-                const resumenLower = post.resumen.toLowerCase();
-                const contenidoLower = post.contenido.toLowerCase();
-                const fechaString = post.fecha;
-                const fechaFormateada = formatearFecha(post.fecha).toLowerCase();
-                const categoriaLower = post.categoria.toLowerCase();
-
-                return tituloLower.includes(searchTerm) ||
-                       resumenLower.includes(searchTerm) ||
-                       contenidoLower.includes(searchTerm) ||
-                       fechaString.includes(searchTerm) ||
-                       fechaFormateada.includes(searchTerm) ||
-                       categoriaLower.includes(searchTerm);
-            });
-        }
+        currentPosts = [...publicaciones];
         ordenarPublicaciones();
     } else if (imagenesSection.classList.contains('active')) {
-         if (searchTerm === '') {
-            currentImages = [...galeriaImagenes];
-        } else {
-             currentImages = galeriaImagenes.filter(img => {
-                const descLower = img.descripcion.toLowerCase();
-                const altLower = img.alt.toLowerCase();
-                const fechaString = img.fecha;
-                const fechaFormateada = formatearFecha(img.fecha).toLowerCase();
-
-                return descLower.includes(searchTerm) ||
-                       altLower.includes(searchTerm) ||
-                       fechaString.includes(searchTerm) ||
-                       fechaFormateada.includes(searchTerm);
-            });
-        }
-         renderizarGaleria(currentImages);
+        currentImages = [...galeriaImagenes];
+        renderizarGaleria(currentImages);
     }
 }
 
@@ -911,9 +875,6 @@ allNavLinks.forEach(link => {
         const targetSectionId = link.dataset.section;
         if (targetSectionId) {
             cambiarSeccion(targetSectionId);
-            if (targetSectionId !== 'single-post') {
-                 searchInput.value = '';
-            }
         }
     });
 });
@@ -921,27 +882,7 @@ allNavLinks.forEach(link => {
 
 backToPostsButton.addEventListener('click', volverAPublicaciones);
 subscribeForm.addEventListener('submit', handleSubscribeFormSubmit);
-searchInput.addEventListener('input', handleSearch);
-searchIcon.addEventListener('click', () => {
-    if (window.innerWidth <= 600) {
-        mobileSectionNav.classList.add('searching');
-        mobileSectionNav.querySelector('span').textContent = 'Buscar';
-    }
-    navLinks.forEach(link => link.style.display = 'none');
-    searchInput.style.display = 'block';
-    searchInput.focus();
-});
-searchInput.addEventListener('blur', () => {
-    if (window.innerWidth <= 600 && searchInput.value.trim() === '') {
-        mobileSectionNav.classList.remove('searching');
-        const activeSection = document.querySelector('.content-section.active').id;
-        mobileSectionNav.querySelector('span').textContent = activeSection.charAt(0).toUpperCase() + activeSection.slice(1);
-    }
-    if (searchInput.value.trim() === '') {
-        navLinks.forEach(link => link.style.display = 'block');
-        searchInput.style.display = 'none';
-    }
-});
+// Event listeners de búsqueda eliminados
 
 closeImageModal.addEventListener('click', closeImageModalFunc);
 imageModal.addEventListener('click', (e) => {
