@@ -1108,6 +1108,7 @@ footer {
         margin: 0;
         display: -webkit-box;
         -webkit-line-clamp: 2; /* Limitar a 2 líneas */
+        line-clamp: 2; /* Limit to 2 lines */
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
@@ -1222,6 +1223,7 @@ footer {
         /* Limitar a 2 líneas con puntos suspensivos */
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2; /* Standard property for future compatibility */
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
