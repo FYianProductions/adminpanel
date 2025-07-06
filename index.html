@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Logos y Espíritu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-right-buttons">
+        <button id="sticker-button" class="top-right-btn">Stickers</button>
+        <div class="search-container">
+            <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+            <input type="search" id="search-input" placeholder="Buscar...">
+        </div>
+        <button id="achievements-button" class="top-right-btn" aria-label="Ver Logros">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M400 0H176c-26.5 0-48.1 21.8-47.4 48.2C131.1 82.3 144 116.6 144 152V296.6c-38.6 8.8-64 44.1-64 85.4v16c0 17.7 14.3 32 32 32H464c17.7 0 32-14.3 32-32v-16c0-41.3-25.4-76.6-64-85.4V152c0-35.4 12.9-69.7 15.4-103.8C448.1 21.8 426.5 0 400 0zM48 448c-26.5 0-48-21.5-48-48V192c0-26.5 21.5-48 48-48H96V448H48zM528 448H480V144h48c26.5 0 48 21.5 48 48V400c0 26.5-21.5 48-48 48z"/>
+            </svg>
+        </button>
+    </div>
+    <div id="sticker-area"></div>
+
+    <header>
+        <div class="container">
+            <h1 id="main-title"></h1>
+            <p>Bienvenidos a Logos y Espíritu, un espacio donde exploramos temas sobre la fe y sobre la razón, además de la obra del Siervo de Dios Rafael García Herreros.</p>
+        </div>
+        <div id="logo-uniminuto">
+             </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul id="main-nav">
+                <li><a href="#" data-section="publicaciones" class="active">Publicaciones</a></li>
+                <li><a href="#" data-section="imagenes">Imagenes</a></li>
+                <li><a href="#" data-section="podcast">Podcast</a></li>
+            </ul>
+            <div class="mobile-section-nav">
+                <button class="mobile-nav-arrow" onclick="cambiarSeccionConFlechas('izquierda')">←</button>
+                <span>Publicaciones</span>
+                <button class="mobile-nav-arrow" onclick="cambiarSeccionConFlechas('derecha')">→</button>
+            </div>
+        </nav>
+
+        <section class="content-section active" id="publicaciones">
+            <div class="section-title-container">
+                <h2 class="section-title">Publicaciones Recientes</h2>
+                <svg id="sort-arrow" class="arrow-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M7 14l5-5 5 5z"/>
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                </svg>
+            </div>
+            <div class="posts-grid" id="posts-grid">
+                </div>
+            <p id="no-results-message" style="display: none;">No se encontraron publicaciones que coincidan con tu búsqueda.</p>
+        </section>
+
+        <section class="content-section" id="single-post">
+             <button id="back-to-posts" class="submit-btn" style="margin-bottom: 20px; background: var(--color-dark);">← Volver a Publicaciones</button>
+            <h1 id="single-post-title" class="single-post-title"></h1>
+            <div class="like-container">
+                <button id="like-button" class="like-btn">Me gusta</button>
+                <span id="like-count">0</span> likes
+            </div>
+            <div class="single-post-info">
+                <span class="single-post-date" id="single-post-date"></span>
+                <span class="single-post-category" id="single-post-category"></span>
+            </div>
+            <div class="single-post-content" id="single-post-content">
+                 </div>
+        </section>
+
+        <section class="content-section" id="imagenes">
+            <h2 class="section-title">Galería de Imágenes</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Explora nuestra colección de imágenes inspiradoras (haz clic para ampliar).</p>
+            <div class="image-gallery" id="image-gallery-grid">
+                 </div>
+             <p id="no-image-results-message" style="display: none; text-align: center; margin-top: 20px; color: #777;">No se encontraron imágenes que coincidan con tu búsqueda.</p>
+        </section>
+
+        <section class="content-section" id="podcast">
+            <h2 class="section-title">Podcast Logos y Espíritu</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Escucha nuestros episodios más recientes.</p>
+             <div class="podcast-grid">
+                 <div class="podcast-item">
+                     <h4>Episodio 1: La Vida de San Juan Eudes</h4>
+                     <p>Fecha: 24 de abril de 2025</p>
+                     <audio id="podcast-sje" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/La Vida de San Juan Eudes.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+                 <div class="podcast-item">
+                     <h4>Episodio 2: La predicación de San Juan Eudes</h4>
+                     <p>Fecha: 01 de mayo de 2025</p>
+                     <audio id="podcast-sje2" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/La predicación de San Juan Eudes.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+                 <div class="podcast-item">
+                     <h4>Episodio 3: Un hogar para las que nadie miraba</h4>
+                     <p>Fecha: 08 de mayo de 2025</p>
+                     <audio id="podcast-uhplqnm" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/Un hogar para las que nadie miraba.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+                 <div class="podcast-item">
+                     <h4>Episodio 4: Un corazón para formar corazones</h4>
+                     <p>Fecha: 15 de mayo de 2025</p>
+                     <audio id="podcast-ep4" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/Ep4 - Un corazón para formar corazones.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+                 <div class="podcast-item">
+                     <h4>Episodio 5: Fundaciones con propósito</h4>
+                     <p>Fecha: 22 de mayo de 2025</p>
+                     <audio id="podcast-ep5" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/Ep5 - Fundaciones con propósito.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+                 <div class="podcast-item">
+                     <h4>Episodio 6: Un horno de Amor Divino</h4>
+                     <p>Fecha: 05 de junio de 2025</p>
+                     <audio id="podcast-ep6" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/Ep6 - Un horno de Amor Divino.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+                 <div class="podcast-item">
+                     <h4>Episodio 7: Letras que encienden corazones</h4>
+                     <p>Fecha: 12 de junio de 2025</p>
+                     <audio id="podcast-ep7" controls style="width: 100%; max-width: 300px; margin-top: 10px;">
+                         <source src="audio/Ep7 - Letras que encienden corazones.mp3" type="audio/mpeg">
+                         Tu navegador no soporta el elemento de audio.
+                     </audio>
+                 </div>
+             </div>
+        </section>
+
+    </div> <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Logos y Espíritu</h3>
+                    <p>Bienvenidos a Logos y Espíritu, un espacio donde exploramos temas sobre la fe y sobre la razón, además de la obra del Siervo de Dios Rafael García Herreros.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                           <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 224.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                        </a>
+                        <a href="#" aria-label="YouTube">
+                            <svg class="social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                     <ul>
+                        <li><a href="#" data-section="publicaciones">Publicaciones</a></li>
+                        <li><a href="#" data-section="imagenes">Imagenes</a></li>
+                        <li><a href="#" data-section="podcast">Podcast</a></li>
+                     </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Suscríbete</h3>
+                    <p>Recibe nuestras publicaciones más recientes en tu correo electrónico.</p>
+                    <form id="subscribe-form">
+                        <input type="email" placeholder="Tu correo electrónico" class="form-input" required>
+                        <button type="submit" class="submit-btn">Suscribirse</button>
+                    </form>
+                    <div id="subscribe-status" style="margin-top: 10px;"></div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© <span id="current-year"></span> Logos y Espíritu. Todos los derechos reservados.</p>
+                <p id="visit-counter" class="visit-counter-display">Visitas al sitio: <img src="https://api.visitorbadge.io/api/visitors?path=https://logosyespiritu.netlify.app&amp;countColor=%23263759" alt="Visitas al sitio"></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="imageModal" class="image-zoom-modal">
+        <span class="close-modal" id="closeImageModal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <div id="achievements-modal" class="image-zoom-modal"> <div class="achievements-modal-content">
+            <span id="close-achievements-modal" class="close-modal">&times;</span>
+            <h2>Logros</h2> 
+            <div class="achievements-tabs">
+                <div class="tabs-header">
+                    <button class="tab-button active" data-tab="exploration-tab">Exploración</button>
+                    <button class="tab-button" data-tab="interaction-tab">Interacción</button>
+                </div>
+                <div class="tabs-content">
+                    <ul id="exploration-tab" class="tab-content active"></ul>
+                    <ul id="interaction-tab" class="tab-content"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Volver arriba">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M240.971 130.524l194.343 194.343c9.373 9.373 9.373 24.569 0 33.941l-22.667 22.667c-9.357 9.357-24.522 9.375-33.901.04L224 227.495 69.255 381.516c-9.379 9.335-24.544 9.317-33.901-.04l-22.667-22.667c-9.373-9.373-9.373-24.569 0-33.941L207.03 130.525c9.372-9.373 24.568-9.373 33.941-.001z"/></svg>
+    </a>
+    
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+</body>
+</html>
