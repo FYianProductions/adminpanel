@@ -11,19 +11,13 @@
 </head>
 <body>
     <div class="top-right-buttons">
-        <button id="sticker-button" class="top-right-btn">Stickers</button>
-        <div class="search-container">
-            <svg id="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
-                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                <path d="M0 0h24v24H0z" fill="none"/>
-            </svg>
-            <input type="search" id="search-input" placeholder="Buscar...">
-        </div>
-        <button id="achievements-button" class="top-right-btn" aria-label="Ver Logros">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path d="M400 0H176c-26.5 0-48.1 21.8-47.4 48.2C131.1 82.3 144 116.6 144 152V296.6c-38.6 8.8-64 44.1-64 85.4v16c0 17.7 14.3 32 32 32H464c17.7 0 32-14.3 32-32v-16c0-41.3-25.4-76.6-64-85.4V152c0-35.4 12.9-69.7 15.4-103.8C448.1 21.8 426.5 0 400 0zM48 448c-26.5 0-48-21.5-48-48V192c0-26.5 21.5-48 48-48H96V448H48zM528 448H480V144h48c26.5 0 48 21.5 48 48V400c0 26.5-21.5 48-48 48z"/>
+        <button id="sticker-button" class="top-right-btn">
+            <!-- Carita feliz en lugar de texto -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24px" height="24px" fill="currentColor">
+                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM164.1 325.5C182 346.2 212.6 368 256 368s74-21.8 91.9-42.5c5.8-6.7 15.9-7.4 22.6-1.6s7.4 15.9 1.6 22.6C349.8 372.1 311.1 400 256 400s-93.8-27.9-116.1-53.5c-5.8-6.7-5.1-16.8 1.6-22.6s16.8-5.1 22.6 1.6zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
             </svg>
         </button>
+        <button id="achievements-button" class="top-right-btn" aria-label="Ver Logros">Logros</button>
     </div>
     <div id="sticker-area"></div>
 
@@ -224,4 +218,4 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
 </body>
-</html> 
+</html>
