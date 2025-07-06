@@ -46,6 +46,27 @@ let currentPostId = null;
 // --- DECLARACIÓN GLOBAL PARA ACCESO DESPUÉS DE LA INICIALIZACIÓN ---
 // Las variables supabase, currentUserIdentifier y currentPostId ya están declaradas al inicio del archivo
 
+// Inicializar Supabase inmediatamente
+try {
+    if (window.supabase) {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+            global: {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+                    'Access-Control-Allow-Headers': 'Content-Type, Authorization'
+                }
+            }
+        });
+        currentUserIdentifier = getOrCreateUserIdentifier();
+        console.log('Supabase inicializado correctamente.');
+    } else {
+        console.error('Error: La biblioteca de Supabase no está disponible.');
+    }
+} catch (e) {
+    console.error('Error durante la configuración de Supabase:', e);
+}
+
 
 function getOrCreateUserIdentifier() {
     let userIdentifier = localStorage.getItem('user_like_identifier');
@@ -1024,24 +1045,18 @@ async function removeLike(postId, userIdentifier) {
 // --- INICIALIZACIÓN ---
 window.addEventListener('DOMContentLoaded', async () => { // Usamos async aquí porque vamos a esperar algunas promesas
     // --- CONFIGURACIÓN DE SUPABASE ---
-    // Asegurar que Supabase esté correctamente inicializado
+    // Verificar si Supabase ya está inicializado
     try {
-        if (window.supabase) { // Verificar que la librería Supabase (window.supabase) esté cargada
-            if (!supabase) { // Verificar si nuestra instancia del cliente (supabase) aún no se ha inicializado
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                currentUserIdentifier = getOrCreateUserIdentifier();
-                console.log('Supabase inicializado correctamente (desde listener).');
-            } else {
-                // Opcional: console.log('Supabase ya estaba inicializado (desde listener).');
-            }
-        } else {
+        if (!supabase && window.supabase) { // Solo inicializar si aún no está inicializado
+            console.log('Supabase ya fue inicializado anteriormente.');
+        } else if (!window.supabase) {
             console.error('Error: La biblioteca de Supabase (window.supabase) no está disponible.');
             if (likeButton) { 
                 likeButton.style.display = 'none'; 
             }
         }
     } catch (e) {
-        console.error('Error durante la configuración de Supabase (desde listener):', e);
+        console.error('Error durante la verificación de Supabase (desde listener):', e);
         if (likeButton) {
             likeButton.style.display = 'none';
         }
